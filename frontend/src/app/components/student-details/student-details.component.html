@@ -1,0 +1,62 @@
+
+<div *ngIf="student" class="card container">
+  <h3 class="card-header"style="color: rgb(82, 33, 175); font-size: 40px; font-weight: bold;text-align: center;">{{student.name}}</h3>
+  <div class="card-body">
+    <div class="row" style="font-size: 27px;">
+      <h3> Student RegNo : </h3>
+      {{student.regNo}}
+    </div>
+    <div class="row" style="font-size: 27px;">
+      <h3 class="pull-right">
+        Address :
+      </h3> 
+      {{student.address}}
+    </div>
+    <div class="row" style="font-size: 27px;">
+      <h3 class="pull-right">
+        Grade : 
+      </h3>{{student.grade}}
+    </div>
+
+    <div class="row" style="font-size: 27px;">
+
+      <h3 class="pull-right">
+        Gender : 
+      </h3>
+      {{student.gender}}
+    </div>
+
+    <div class="row" style="font-size: 27px;">
+      <h3 class="pull-right">
+        DOB : 
+      </h3>{{student.dob | date:"mediumDate"}}
+    </div>
+
+    <div class="row" style="font-size: 27px;">
+      <h3 class="pull-right">
+        GuardianName: 
+      </h3>{{student.guardianName}}
+    </div>
+
+    <div class="row" style="font-size: 27px;">
+      <h3 class="pull-right">
+        TelephoneNo: 
+      </h3>{{student.telephoneNo}}
+    </div>
+
+    <div class="row" *ngIf="student.subject">
+    <h3>SubjectName:</h3>
+      <div class="pull-right" *ngFor="let sub of student.subject">
+        <mat-option style="font-size: 27px; font-weight:120;">{{sub.name}}</mat-option>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer" > 
+            <button mat-raised-button color="primary"  aria-label="Example icon button with a delete icon">
+             <mat-icon  (click)="editClient() ">edit</mat-icon>
+           </button>
+            <button mat-raised-button color="warn" aria-label="Example icon button with a delete icon">
+             <mat-icon  (click)="deleteClient()">delete</mat-icon>
+           </button>
+       </div>
+  </div>

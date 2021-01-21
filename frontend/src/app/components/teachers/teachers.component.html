@@ -1,0 +1,78 @@
+<div class="row">
+  <div class="col-md-6">
+    <div style="font-size: 50px; text-align:left; font-weight: bold; color: rgb(28, 41, 161);"> Teachers Details</div>
+  </div>
+</div>
+<br>
+<br>
+<div class="form-group row">
+    <div class ="col-sm-4" style="margin-left:40px;">
+      <br>
+      <br>
+      <br>
+     <input type="text"   class="form-control" placeholder="Search here" [(ngModel)]="searchText" />
+    </div>
+  <div class="container-fluid ">
+  <div class="col-12 col-sm-6 col-md-3 " >
+    <div class="info-box mb-4" >
+      <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+   <div class="info-box-content">
+        <div class="pull-right" style="  font-size: 20px;  font-weight: bold;">Total Teachers: {{teachersCount}}</div>
+       <br>
+      </div>
+    </div>
+   </div>
+ 
+  
+  
+</div> 
+<table *ngIf="teacherArray?.length>0; else noTeacher" class="table table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th >No.</th>
+      <th>TeacherName</th>
+      <th >Address</th>
+      <th>Gender</th>
+      <th >Age</th>
+      <th >Salary</th> 
+      <th >TelephoneNo</th>
+      <th ></th>
+    </tr>
+  </thead>
+  <tbody >
+    <tr *ngFor="let teacher of teacherArray  | grdFilter:
+    { teachername:searchText,
+     address:searchText,
+     gender:searchText,
+     salary: searchText,
+     age: searchText,
+     telephoneNo:searchText } | paginate :{itemsPerPage:10,currentPage:p};let i=index;">
+      <td >{{i+1}}</td>
+      <td >{{teacher.teachername}}</td>
+      <td >{{teacher.address}}</td> 
+      <td >{{teacher.gender}}</td> 
+      <td>{{teacher.age}}</td>
+      <td >{{teacher.salary}}</td>
+      <td> {{teacher.telephoneNo}}</td>  
+       
+      
+      <td >
+        <a class="btn btn-primary btn-sm"  (click)="toTeacherDetails(teacher._id)"><i class="fa fa-arrow-circle-o-right"></i> Details</a>
+      </td>
+    </tr>
+  </tbody>
+ 
+   </table>
+  
+
+   <div class="form-group row"></div>
+  <div>
+    <pagination-controls (pageChange)="p=$event" ></pagination-controls>
+
+  </div>
+  
+<ng-template #noTeacher>
+  <hr />
+  <h4>There are no Teachers in the system</h4>
+</ng-template>
+

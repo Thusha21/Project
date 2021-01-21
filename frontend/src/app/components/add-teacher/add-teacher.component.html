@@ -1,0 +1,92 @@
+
+
+<div class="card container">
+    <div class="card-header" *ngIf="!isEdit"  style="color: rgb(65, 6, 173); font-size: 40px; font-weight: bold;" >
+        Add Teacher
+    </div>
+    <div class="card-header" *ngIf="isEdit"  style="color: rgb(65, 6, 173); font-size: 20px; font-weight: bold;" >
+        Update Teacher
+    </div>
+    
+    <!-- name -->
+    <div class="card-block" style="margin-left:15%;">
+        <form [formGroup] = "form">
+            <br>
+            <!-- Name -->
+            <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline"  >
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Enter your name" formControlName ="name">
+                    <mat-error *ngIf="this.form.get('name').hasError('required')">The name is required</mat-error>
+                    <mat-error *ngIf="this.form.get('name').hasError('pattern')">Invalid name</mat-error>
+                    
+                </mat-form-field>
+            </div>
+
+            <!-- Age -->
+            <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline" >
+                    <mat-label>Age</mat-label>
+                    <input matInput type="number" placeholder="Enter your age" formControlName ="age">
+                    <mat-error *ngIf="this.form.get('age').hasError('required')">The age is required</mat-error>
+                    <mat-error *ngIf="this.form.get('age').hasError('min')">Invalid age</mat-error>
+                </mat-form-field>
+            </div>
+          <!--Address-->
+          <div class="form-group">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Address</mat-label>
+                <input matInput placeholder="Enter your guardian name" formControlName="address">
+                <mat-error *ngIf="this.form.get('address').hasError('required')">The address is required</mat-error>
+               
+            </mat-form-field>
+        </div>
+
+        <!--Gender-->
+        <div class="form-group">
+            <mat-form-field class="example-full-width" appearance="none">
+                <mat-label>Gender</mat-label>
+                <br>
+                  <input matInput >
+                  
+                   <mat-radio-group  formControlName="gender" aria-label="Select an option">
+                       
+                      <mat-radio-button  value="Female">Female</mat-radio-button>
+                     
+                        <mat-radio-button style="margin-left:10%;" value="Male">Male</mat-radio-button>
+                    </mat-radio-group>
+                    <mat-error *ngIf="this.form.get('gender').hasError('required')">The gender is required</mat-error>
+                </mat-form-field>
+         
+        </div>
+             <!--TP-->
+             <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>TelephoneNo</mat-label>
+                    <input matInput placeholder="Enter your telephone number" formControlName="telephoneNo">
+                    <mat-error *ngIf="this.form.get('telephoneNo').hasError('required')">The telephone number is required</mat-error>
+                    <mat-error *ngIf="this.form.get('telephoneNo').hasError('maxLength')">Invalid Number</mat-error>
+                 <mat-error *ngIf="this.form.get('telephoneNo').hasError('pattern')">Invalid  Number</mat-error>
+                </mat-form-field>
+            </div>
+
+             <!--Salary-->
+             <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Salary</mat-label>
+                    <input matInput placeholder="Enter your salary" formControlName="salary">
+                    <mat-error *ngIf="this.form.get('salary').hasError('required')">The salary is required</mat-error>
+                    <mat-error *ngIf="this.form.get('salary').hasError('pattern')">Invalid salary</mat-error>
+                    <mat-error *ngIf="this.form.get('salary').hasError('min')">Invalid salary</mat-error>
+                    <mat-error *ngIf="this.form.get('salary').hasError('max')">Invalid salary</mat-error>
+                </mat-form-field>
+            </div>
+           <br>
+        <input *ngIf="isEdit" type="submit" (click)="onUpdate(form)" class="btn btn-primary "
+        value="Update">
+       <input *ngIf="!isEdit" type="submit" (click)="onSubmit(form)" class="btn btn-primary "
+        value="Submit"> 
+        </form>
+    </div>
+</div>
+

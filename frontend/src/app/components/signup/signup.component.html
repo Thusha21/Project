@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-md-6">
+        <a class="btn btn-link"routerLink="/"><i class="fa fa-window-close"></i> Back To Dashboard</a>
+    </div>
+
+</div>
+
+
+<div id="Register-container" class="flex container mx-auto items-center justify-center">
+    <div class="row">
+      <div class="col-md-4 mx-auto">
+        <div class="card">
+  
+          <div class="card-header">
+            <h2 class="mb-0" style="font-weight: bold; text-align: center; color: darkblue;">ATC INSTITUTE</h2>
+            <h4 class="mb-0" style="font-weight: bold;  text-align: center;">Register Form</h4>
+          </div>
+         
+          <br>
+    <!-- name -->
+    <div class="card-block" >
+        <form [formGroup]="form">
+            <!-- Email -->
+            <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Enter your email id" formControlName="email">
+                    <mat-error *ngIf="this.form.get('email').hasError('required')">The email is required</mat-error>
+                </mat-form-field>
+            </div>
+        
+           <!-- Password -->
+           <div class="form-group">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Password</mat-label>
+               
+                <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter your password " formControlName="password">
+                <mat-hint>Min 8 charecter</mat-hint>
+                <mat-error *ngIf="this.form.get('password').hasError('required')">The password is required</mat-error>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+            </mat-form-field>
+          </div>
+          <!-- UserRole -->
+            <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>UserRole</mat-label>
+                    <input matInput placeholder="Enter your userRole " formControlName="userRole">
+                    <mat-error *ngIf="this.form.get('userRole').hasError('required')">The userRole is required</mat-error>
+                    
+                </mat-form-field>
+                 </div>
+
+            <input  type="submit" (click)="onSubmit(form)" class="btn btn-primary "
+                value="Signup"> 
+        </form>
+    </div>
+</div>
+</div>
+</div>
+</div>

@@ -1,0 +1,32 @@
+.container {
+	position: relative;
+	top:0;
+	opacity: 1;
+	float:center;
+	
+	width: 100%;
+	background: #fff;
+	border-radius: 10px;
+	max-width: 500px;
+	min-height: 400px;
+	margin: 80px 200px 90px 460px;
+	border: 5px solid rgb(51, 9, 131);
+}
+
+
+.card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	word-wrap: break-word;
+	background-color: rgb(255, 255, 255);
+	background-clip: border-box;
+	border: 5px solid rgb(4, 4, 59);
+	border-radius: 0.5rem;
+	margin: 10% auto 0;
+	padding: 10px  10px  40px  10px ;
+	margin-top: 10px;
+  }
+
+
+

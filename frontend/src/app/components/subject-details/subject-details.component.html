@@ -1,0 +1,30 @@
+
+
+<div *ngIf="subject" class="card container">
+    <h3 class="card-header"style="color: rgb(82, 33, 175); font-size: 40px; font-weight: bold;text-align: center;">{{subject.name}}</h3>
+    <div class="card-body">
+        
+        <div class="row" style="font-size: 27px;">
+
+            <h3 class="pull-right">
+                Fee :
+            </h3> {{subject.fee}}
+        </div>
+        <div class="row" style="font-size: 27px;">
+
+            <h3 class="pull-right">
+                Teacher : 
+            </h3> {{subject.teacher.name}}
+        </div>
+        </div>
+        <div class="card-footer" > 
+            <button mat-raised-button color="primary"  aria-label="Example icon button with a delete icon">
+             <mat-icon  (click)="editClient() ">edit</mat-icon>
+           </button>
+            <button mat-raised-button color="warn" aria-label="Example icon button with a delete icon">
+             <mat-icon  (click)="deleteClient()">delete</mat-icon>
+           </button>
+       </div>
+
+
+</div>

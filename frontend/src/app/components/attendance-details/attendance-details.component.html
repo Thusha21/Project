@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-md-6">
+        <a routerLink="/" class="btn btn-link"><i class="fa fa-arrow-circle-o-left"></i> Back To Dashboard</a>
+    </div>
+    
+</div>
+
+
+<div *ngIf="attendance" class="card container">
+    <h3 class="card-header" style="color: rgb(82, 33, 175); font-size: 30px; font-weight: bold;text-align: center;">Attendance</h3>
+    <div class="card-body">
+        <div class="row" style="font-size: 27px;">
+          <h4> Attendance ID :</h4> {{attendance._id}}
+        </div>
+        <div class="row" style="font-size: 27px;">
+            <h3 class="pull-right">
+                IsAttend : 
+            </h3> {{attendance.isAttend}} 
+        </div>
+        <div class="row" style="font-size: 27px;">
+
+            <h3 class="pull-right">
+                Student : 
+            </h3> {{attendance.student.name}}
+        </div>
+        <div class="row" style="font-size: 27px;">
+             <h3 class="pull-right">
+                Class : 
+            </h3> {{attendance.class.time}}
+        </div>
+        <div class="row" style="font-size: 27px;">
+            <h3 class="pull-right">
+               Class : 
+           </h3> {{attendance.class.date}}
+       </div>
+       <div class="row" style="font-size: 27px;">
+        <h3 class="pull-right">
+           Subject: 
+       </h3> {{attendance.subject.name}}
+   </div>
+
+ </div> 
+ <div class="card-footer" > 
+    <button mat-raised-button color="primary"  aria-label="Example icon button with a delete icon">
+     <mat-icon  (click)="editClient() ">edit</mat-icon>
+   </button>
+    <button mat-raised-button color="warn" aria-label="Example icon button with a delete icon">
+     <mat-icon  (click)="deleteClient()">delete</mat-icon>
+   </button>
+</div>
+</div>
+        
+    

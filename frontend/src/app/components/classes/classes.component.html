@@ -1,0 +1,63 @@
+<div class="row" *ngIf="classArray?.length>0">
+    <div class="col-md-6">
+      <div style="font-size: 50px; padding:30px; font-weight: bold; color: rgb(38, 38, 204);"><i class="fa fa-users" ></i> Classes</div>
+    </div>
+    <br>
+    <br>
+    <div class="form-group row">
+        <div class ="col-sm-4" style="margin-left:40px;">
+          <br>
+          <br>
+          <br>
+         <input type="text"   class="form-control" placeholder="Search here" [(ngModel)]="searchText" />
+        </div>
+      <div class="container-fluid ">
+      <div class="col-12 col-sm-6 col-md-3 " >
+        <div class="info-box mb-4" >
+          <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+       <div class="info-box-content">
+            <div class="pull-right" style="  font-size: 20px;  font-weight: bold;">Total Classes: {{classesCount}}</div>
+           <br>
+          </div>
+        </div>
+    </div>
+    </div>
+
+
+  <table *ngIf="classArray?.length>0; else noClass" class="table table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">No.</th>
+      <th scope="col">Date</th>
+      <th scope="col">Time</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Teacher</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let class of classArray | grdFilter:
+     {date:searchText,
+      time: searchText}| paginate :{itemsPerPage:10,currentPage:p};let i=index;">
+      <td scope="col">{{i+1}}</td>
+      <td scope="col">{{class.date | date:mediumDate}}</td>
+      <td scope="col">{{class.time}}</td>
+       <td *ngIf="class.subject" scope="col">{{class.subject.name}}</td>
+       <td *ngIf="class.subject.teacher" scope="col">{{class.subject.teacher.name}}</td>
+      <td>
+        <a class="btn btn-primary btn-sm"  (click)="toClassDetails(class._id)"><i class="fa fa-arrow-circle-o-right"></i> Details</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="form-group row"></div>
+<div>
+  <pagination-controls (pageChange)="p=$event" ></pagination-controls>
+
+</div>
+
+  <ng-template #noClass>
+    <hr />
+    <h4>There are no Class in the system</h4>
+  </ng-template>
+

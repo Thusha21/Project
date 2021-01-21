@@ -1,0 +1,66 @@
+
+<div class="row">
+    <div class="col-md-6">
+        <a class="btn btn-link"routerLink="/"><i class="fa fa-window-close"></i> Back To Dashboard</a>
+    </div>
+
+<div class="card container">
+    <div class="card-header"   *ngIf="!isEdit" style="color:rgb(82, 33, 175); font-size: 20px; font-weight: bold;" >
+        Add attendance
+    </div>
+    <div class="card-header" *ngIf="isEdit" style="color: rgb(82, 33, 175); font-size: 20px; font-weight: bold;" >
+      Update Attendance
+  </div>
+    
+    <!-- name -->
+    <div class="card-block" style="margin-left:15%">
+        <form [formGroup]="form">
+             <!--Class-->
+             <div class="form-group">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Class</mat-label>
+                <mat-select formControlName="classId">
+                  <mat-option>None</mat-option>
+                  <mat-option *ngFor="let student of studentArray" [value]="class._id">
+                    {{class.classname}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="this.form.get('classId').hasError('required')">The class is required</mat-error>
+              </mat-form-field>
+            </div>
+
+             <!--Student-->
+             <div class="form-group">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Student</mat-label>
+                <mat-select formControlName="studentId">
+                  <mat-option>None</mat-option>
+                  <mat-option *ngFor="let student of studentArray" [value]="student._id">
+                    {{student.studentname}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="this.form.get('studentId').hasError('required')">The student is required</mat-error>
+              </mat-form-field>
+            </div>
+
+            <!--IsAttend-->
+            <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>IsAttend</mat-label>
+                    <mat-select formControlName="isPay">
+                    <mat-error *ngIf="this.form.get('isAttend').hasError('required')">The attendance details is required</mat-error>
+                    <mat-option  value="Present">Present</mat-option>
+                    <mat-option  value="Absent">Absent</mat-option>
+                    </mat-select>
+                    </mat-form-field>
+                 </div>
+
+           
+
+                 <input *ngIf="isEdit" type="submit" (click)="onUpdate(form)" class="btn btn-primary "
+                 value="Update">
+             <input *ngIf="!isEdit" type="submit" (click)="onSubmit(form)" class="btn btn-primary "
+                 value="Submit">
+        </form>
+    </div>
+</div>

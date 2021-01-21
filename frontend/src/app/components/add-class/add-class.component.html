@@ -1,0 +1,58 @@
+
+<div class="card container">
+    <div class="card-header" *ngIf="!isEdit" style="color: rgb(82, 37, 187); font-size: 40px; font-weight: bold;" >
+        Add Class
+    </div>
+    <div class="card-header" *ngIf="isEdit" style="color: rgb(82, 40, 180); font-size: 20px; font-weight: bold;" >
+        Update Class
+    </div>
+
+    <!-- name -->
+    <div class="card-block" style="margin-left:15%">
+        <form [formGroup]="form">
+
+            <!-- Date -->
+           <div class="form-group">
+                    <mat-form-field appearance="outline">
+                        <input formControlName="date" (click)="picker.open()" matInput
+                            [matDatepicker]="picker" placeholder="Choose a class date">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error *ngIf="this.form.get('date').hasError('required')">The date is required</mat-error>
+
+                    </mat-form-field>
+                </div>
+
+            <!-- Time -->
+            <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Time</mat-label>
+                    <input type="time" matInput placeholder="Enter the class time" formControlName="time">
+
+                    <mat-error *ngIf="this.form.get('time').hasError('required')">The  class time is required</mat-error>
+                </mat-form-field>
+            </div>
+
+             <!--Subject-->
+             <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Subject</mat-label>
+                <mat-select formControlName="subjectId">
+                    <mat-option>None</mat-option>
+                  <mat-option *ngFor="let subject of subjectArray" [value]="subject._id">
+                    {{subject.subjectname}},
+                    {{subject.teacher.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="this.form.get('subjectId').hasError('required')">The subject is required</mat-error>
+              </mat-form-field>
+            </div>
+
+            <br>
+            <input *ngIf="isEdit" type="submit" (click)="onUpdate(form)" class="btn btn-primary "
+            value="Update">
+        <input *ngIf="!isEdit" type="submit" (click)="onSubmit(form)" class="btn btn-primary "
+            value="Submit">
+        </form>
+    </div>
+</div>

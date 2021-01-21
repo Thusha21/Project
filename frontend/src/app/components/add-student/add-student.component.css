@@ -1,0 +1,34 @@
+.card-header{
+	background: rgb(248, 248, 250);
+	padding: 20px 20px 0px 50px;
+	text-align: center;
+}
+.mat-form-field {
+	width: 130%;
+	border-color:black;
+	margin:30px 10px -40px -80px;
+  
+  }
+
+.container {
+	position: relative;
+	top:0;
+	opacity: 1;
+	float: center;
+	padding: 50px 50px 20px 60px;
+	size:20px 50px 20px 50px ;
+	width: 100%;
+	background: rgb(255, 255, 255);
+	border-radius: 0.5rem;
+	max-width: 530px;
+	border: 5px solid rgb(12, 12, 59);
+    
+}
+
+.btn{
+	margin-left:-80px;
+	margin-bottom: 10px;
+}
+ 
+
+

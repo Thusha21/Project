@@ -1,0 +1,125 @@
+
+<div class="card container">
+    <div class="card-header" *ngIf="!isEdit" style="color: rgb(82, 33, 175); font-size: 40px; font-weight: bold;" >
+        Add Student
+    </div>
+    <div class="card-header" *ngIf="isEdit" style="color: rgb(82, 33, 175); font-size: 20px; font-weight: bold;">
+        Update Student
+    </div>
+
+    <!-- name -->
+    <div class="card-block" style="margin-left:15%">
+        <form [formGroup]="form">
+            <!-- Name -->
+            <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Enter your name" formControlName="name">
+                    <mat-error *ngIf="this.form.get('name').hasError('required')">The name is required</mat-error>
+                    <mat-error *ngIf="this.form.get('name').hasError('pattern')">Invalid name</mat-error>
+                </mat-form-field>
+            </div>
+            <!-- RegNo -->
+            <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>RegNo</mat-label>
+                    <input matInput placeholder="Enter your regNo" formControlName="regNo">
+                    <mat-error *ngIf="this.form.get('regNo').hasError('required')">The regNo is required</mat-error>
+                    
+                </mat-form-field>
+            </div>
+
+            <!-- Address -->
+            <div class="form-group">
+                <mat-form-field class="example-full-width"  appearance="outline">
+                    <mat-label>Address</mat-label>
+                    <input matInput placeholder="Enter your address" formControlName="address">
+                    <mat-error *ngIf="this.form.get('address').hasError('required')">The address is required</mat-error>
+
+                </mat-form-field>
+            </div>
+
+            <!-- Grade -->
+            <div class="form-group">
+                <mat-form-field class="example-full-width"  appearance="outline">
+                    <mat-label>Grade</mat-label>
+                    <input matInput type="number" placeholder="Enter your grade"formControlName="grade">
+                    <mat-error *ngIf="this.form.get('grade').hasError('required')">The grade is required</mat-error>
+                    <mat-error *ngIf="this.form.get('grade').hasError('pattern')">Invalid grade</mat-error>
+                </mat-form-field>
+            </div>
+
+           <!--Gender-->
+        <div class="form-group">
+            <mat-form-field class="example-full-width" appearance="none">
+                <mat-label>Gender</mat-label>
+                <br>
+                  <input matInput >
+                  
+                   <mat-radio-group  formControlName="gender" aria-label="Select an option">
+                       
+                      <mat-radio-button  value="Female">Female</mat-radio-button>
+                     
+                        <mat-radio-button style="margin-left:10%;" value="Male">Male</mat-radio-button>
+                    </mat-radio-group>
+                    <mat-error *ngIf="this.form.get('gender').hasError('required')">The gender is required</mat-error>
+                </mat-form-field>
+         
+        </div>
+            <!-- DOB -->
+            <div class="form-group">
+                <mat-form-field  appearance="outline">
+                    <input formControlName="dob" (click)="picker.open()" matInput
+                        [matDatepicker]="picker" placeholder="Choose a date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+
+                </mat-form-field>
+            </div>
+
+             <!--TP-->
+             <div class="form-group">
+                <mat-form-field class="example-full-width"  appearance="outline">
+                    <mat-label>TelephoneNo</mat-label>
+                    <input matInput placeholder="Enter your telephone number" formControlName="telephoneNo">
+                    <mat-error *ngIf="this.form.get('telephoneNo').hasError('required')">The telephone number is required</mat-error>
+                    <mat-error *ngIf="this.form.get('telephoneNo').hasError('maxLength')">Invalid Number</mat-error>
+                 <mat-error *ngIf="this.form.get('telephoneNo').hasError('pattern')">Invalid  Number</mat-error>
+                </mat-form-field>
+            </div>
+
+
+             <!--GuardianName-->
+             <div class="form-group">
+                <mat-form-field class="example-full-width"  appearance="outline">
+                    <mat-label>GuardianName</mat-label>
+                    <input matInput placeholder="Enter your guardian name" formControlName="guardianName">
+                    <mat-error *ngIf="this.form.get('guardianName').hasError('required')">The guardian name is required</mat-error>
+                    <mat-error *ngIf="this.form.get('guardianName').hasError('pattern')">Invalid guardian name</mat-error>
+                </mat-form-field>
+            </div>
+
+         <!--Subject-->
+         <div class="form-group">
+            <mat-form-field class="example-full-width"  appearance="outline">
+            <mat-label>Subject</mat-label>
+            <mat-select formControlName="subjectId" multiple>
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let subject of subjectArray" [value]="subject._id">
+                {{subject.subjectname}},{{subject.teacher.name}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="this.form.get('subjectId').hasError('required')">The subject is required</mat-error>
+          </mat-form-field>
+        </div>
+
+     <br>
+ <!--input (click)="onSubmit(form)" type="submit" class="btn btn-success "
+                value="Submit"-->
+            <input *ngIf="isEdit" type="submit" (click)="onUpdate(form)" class="btn btn-primary "
+                value="Update">
+            <input *ngIf="!isEdit" type="submit" (click)="onSubmit(form)" class="btn btn-primary "
+                value="Submit">
+        </form>
+    </div>
+</div>

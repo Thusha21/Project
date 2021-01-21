@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col-md-6">
+    <div style="font-size: 50px; padding:30px; font-weight: bold; color: rgb(38, 38, 204);"><i class="fa fa-users" ></i> Subjects</div>
+  </div>
+  <br>
+<br>
+<div class="form-group row">
+    <div class ="col-sm-4" style="margin-left:40px;">
+      <br>
+      <br>
+      <br>
+     <input type="text"   class="form-control" placeholder="Search here" [(ngModel)]="searchText" />
+    </div>
+  <div class="container-fluid ">
+  <div class="col-12 col-sm-6 col-md-3 " >
+    <div class="info-box mb-4" >
+      <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+   <div class="info-box-content">
+        <div class="pull-right" style="  font-size: 20px;  font-weight: bold;">Total Subjects: {{subjectsCount}}</div>
+       <br>
+      </div>
+    </div>
+</div>
+</div>
+
+  <table *ngIf="subjectArray?.length>0; else noSubject" class="table table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th >No.</th>
+      <th >SubjectName</th>
+      <th >Fee</th>
+      <th >Teacher</th> 
+      <th ></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let subject of subjectArray | grdFilter:
+     {
+      Fee:searchText,
+      subjectname: searchText}| paginate :{itemsPerPage:10,currentPage:p};let i=index;">
+      <td scope="col">{{i+1}}</td>
+      <td  scope="col">{{subject.subjectname}}</td>
+      <td scope="col">{{subject.fee}}</td>
+       <td *ngIf="subject.teacher" scope="col">{{subject.teacher.name}}</td>
+
+      <td>
+        <a class="btn btn-primary btn-sm" (click)="toSubjectDetails(subject._id)"  ><i class="fa fa-arrow-circle-o-right"></i> Details</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="form-group row"></div>
+<div>
+  <pagination-controls (pageChange)="p=$event" ></pagination-controls>
+
+</div>
+  <ng-template #noSubject>
+    <hr />
+    <h4>There are no Subjects in the system</h4>
+  </ng-template>
+

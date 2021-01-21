@@ -1,0 +1,63 @@
+
+<div class="card container">
+    <div class="card-header" *ngIf="!isEdit" style="color:rgb(82, 33, 175); font-size:40px; font-weight: bold;" >
+        Add Subject
+    </div>
+    <div class="card-header" *ngIf="isEdit" style="color: rgb(82, 33, 175); font-size: 20px; font-weight: bold;" >
+        Update Subject
+    </div>
+    <!-- name -->
+    <div class="card-block" style="margin-left:15%">
+        <form [formGroup]="form">
+            <!-- Name -->
+            <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Enter the subject name" formControlName="name">
+                    <mat-error *ngIf="this.form.get('name').hasError('required')">The name is required</mat-error>
+                    <mat-error *ngIf="this.form.get('name').hasError('pattern')">Invalid name</mat-error>
+                </mat-form-field>
+            </div>
+
+
+            <!--Fee-->
+            <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Fee</mat-label>
+                    <input matInput placeholder="Enter subject fees" formControlName="fee">
+                    <mat-error *ngIf="this.form.get('fee').hasError('required')">The fee is required</mat-error>
+                    <mat-error *ngIf="this.form.get('fee').hasError('pattern')">Invalid fees</mat-error>
+                    <mat-error *ngIf="this.form.get('fee').hasError('min')">Invalid fees</mat-error>
+                    <mat-error *ngIf="this.form.get('fee').hasError('max')">Invalid name</mat-error>
+                </mat-form-field>
+            </div>
+
+            <!--Teacher-->
+
+         <div class="form-group">
+            <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Teacher</mat-label>
+            <!-- <section  *ngFor="let item of teacherArray">
+              <mat-checkbox  formControlName="teacherId"  value= item._id (change)="getTeacher($event)">{{item.teachername}}</mat-checkbox>
+
+            </section> -->
+
+            <mat-select formControlName="teacherId"  >
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let teacher of teacherArray" [value]="teacher._id">
+                {{teacher.teachername}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="this.form.get('teacherId').hasError('required')">The teacher is required</mat-error>
+          </mat-form-field>
+        </div>
+            <br>
+            <!--input (click)="onSubmit(form)" type="submit" class="btn btn-success "
+                value="Submit"-->
+            <input *ngIf="isEdit" type="submit" (click)="onUpdate(form)" class="btn btn-primary"
+                value="Update">
+            <input *ngIf="!isEdit" type="submit" (click)="onSubmit(form)" class="btn btn-primary"
+                value="Submit">
+        </form>
+    </div>
+</div>
